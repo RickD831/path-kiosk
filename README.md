@@ -25,7 +25,7 @@ Built with **Angular 21** (standalone components, signals, zoneless) + **Bootstr
 
 **Find Your Way** — exploded isometric view of all four floors (left) and the selected floor's detail (right); picking a destination draws the full route across floors with turn-by-turn directions:
 
-![Interactive wayfinding map](docs/screenshot-map.png)
+![Interactive wayfinding map](docs/screenshot-map-route.png)
 
 ## Development
 
