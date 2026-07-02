@@ -46,3 +46,6 @@ Thumbs.db
 # Local-only Claude Code project files (never publish)
 CLAUDE.md
 .claude/
+
+# Local proxy config — contains the internal API hostname (copy from proxy.conf.sample.json)
+proxy.conf.json

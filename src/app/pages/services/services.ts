@@ -4,8 +4,9 @@ import { Dict, I18nService } from '../../core/i18n.service';
 
 interface ServiceCard {
   icon: string;
-  url?: string;   // external site (opens in a new tab)
-  route?: string; // in-app info page (QR code — complete on your own phone)
+  url?: string;    // external site (opens in a new tab)
+  route?: string;  // in-app page
+  phone?: boolean; // QR info page — show the "use your phone" badge
   label: string;
   desc: string;
 }
@@ -23,10 +24,10 @@ interface ServicesStrings {
 // they route to /service/:id, which shows a QR code + URL for the visitor's
 // own phone. Neither url nor route → coming soon.
 const CARD_LINKS: Partial<ServiceCard>[] = [
-  { route: '/service/audio' },
-  { url: 'https://portal.monterey.courts.ca.gov/search' },
+  { route: '/service/audio', phone: true },
+  { route: '/case-lookup' }, // in-kiosk: today's hearings via the calendar boards API
   { url: 'https://www.monterey.courts.ca.gov/divisions/jury-services' },
-  { route: '/service/payments' },
+  { route: '/service/payments', phone: true },
   {}, // Self-Help Center — coming soon
   {}, // Court Records Request — coming soon
 ];
@@ -45,7 +46,7 @@ const STRINGS: Dict<ServicesStrings> = {
     back: '← Back to Home',
     cards: cards([
       ['Audio Recordings & Transcripts', 'Order official audio recordings and transcripts of court proceedings.'],
-      ['Case Lookup', 'Search for case information, hearing dates, and court records.'],
+      ['Case Lookup', 'Find out where and when your case is being heard today.'],
       ['Jury Duty', 'Check your jury summons status, request postponements, or report for service.'],
       ['Online Court Payments', 'Pay fines, fees, and other court-related charges securely online.'],
       ['Self-Help Center', 'Access court forms, instructions, and resources for self-represented litigants.'],
@@ -60,7 +61,7 @@ const STRINGS: Dict<ServicesStrings> = {
     back: '← Volver al Inicio',
     cards: cards([
       ['Grabaciones de Audio y Transcripciones', 'Solicite grabaciones de audio y transcripciones oficiales de los procedimientos judiciales.'],
-      ['Búsqueda de Casos', 'Busque información de casos, fechas de audiencias y registros judiciales.'],
+      ['Búsqueda de Casos', 'Averigüe dónde y cuándo se atiende su caso hoy.'],
       ['Servicio de Jurado', 'Verifique el estado de su citación de jurado, solicite aplazamientos o preséntese para servir.'],
       ['Pagos en Línea de la Corte', 'Pague multas, tarifas y otros cargos judiciales de forma segura en línea.'],
       ['Centro de Autoayuda', 'Acceda a formularios, instrucciones y recursos judiciales para personas que se representan a sí mismas.'],
@@ -90,7 +91,9 @@ const STRINGS: Dict<ServicesStrings> = {
               <div class="svc-icon">{{ card.icon }}</div>
               <div class="svc-label">{{ card.label }}</div>
               <div class="svc-desc">{{ card.desc }}</div>
-              <span class="phone-badge">{{ s().phone }}</span>
+              @if (card.phone) {
+                <span class="phone-badge">{{ s().phone }}</span>
+              }
             </a>
           } @else {
             <div class="service-card coming-soon">

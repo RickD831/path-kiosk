@@ -31,10 +31,20 @@ Built with **Angular 21** (standalone components, signals, zoneless) + **Bootstr
 
 ```bash
 npm install
+cp proxy.conf.sample.json proxy.conf.json   # set the internal calendar API host (file is gitignored)
 npm start        # ng serve on port 4300, binds 0.0.0.0
 ```
 
-Routes: `/` · `/services` · `/service/:id` · `/calendars` · `/calendar/:dept` · `/map`
+Routes: `/` · `/services` · `/service/:id` · `/case-lookup` · `/calendars` · `/calendar/:dept` · `/map`
+
+### Calendar boards API (Case Lookup)
+
+The Case Lookup page reads today's hearings from the court's internal calendar-boards API through
+relative `/api/calendar/board/...` paths. In development the dev-server proxy (`proxy.conf.json`)
+forwards those to the internal API host; in production the web server must reverse-proxy the same
+paths — scoped to the **read-only board endpoints only**. The internal hostname is intentionally
+never committed to this repository. If the API is unreachable the page degrades to a bilingual
+"temporarily unavailable" notice.
 
 ## Production build & deployment
 

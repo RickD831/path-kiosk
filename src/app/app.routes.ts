@@ -12,6 +12,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/services/services').then((m) => m.Services),
   },
   {
+    path: 'case-lookup',
+    title: 'Case Lookup — PATH',
+    loadComponent: () => import('./pages/case-lookup/case-lookup').then((m) => m.CaseLookup),
+  },
+  {
     path: 'service/:id',
     title: 'Court Services — PATH',
     loadComponent: () => import('./pages/service-info/service-info').then((m) => m.ServiceInfoPage),

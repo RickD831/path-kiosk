@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewEncapsulation, computed, effect, inject, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, ViewEncapsulation, computed, effect, inject, input, signal, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { I18nService } from '../../core/i18n.service';
@@ -134,7 +134,17 @@ export class MapPage {
   private readonly ovSvg = viewChild<ElementRef<SVGSVGElement>>('ovSvg');
   private readonly detSvg = viewChild<ElementRef<SVGSVGElement>>('detSvg');
 
+  /** Deep link: /map?dept=7 preselects a department (used by Case Lookup). */
+  readonly dept = input<string | undefined>();
+
   constructor() {
+    effect(() => {
+      const q = this.dept();
+      if (!q) return;
+      const d = ALL_DESTS.find((x) => x.label === 'Department ' + parseInt(q, 10));
+      if (d) this.selectDest(d.key);
+    });
+
     effect(() => {
       const ov = this.ovSvg()?.nativeElement;
       const det = this.detSvg()?.nativeElement;

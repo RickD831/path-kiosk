@@ -1,0 +1,8 @@
+{
+  "_comment": "Copy to proxy.conf.json and set target to the internal CCMS API host. proxy.conf.json is gitignored — internal hostnames never go in this repo. The context is deliberately scoped to the read-only calendar board endpoints.",
+  "/api/calendar/board": {
+    "target": "https://YOUR-INTERNAL-CCMS-API-HOST",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,63 @@
+<main class="page-body lookup-page">
+  <h1 class="page-title">{{ s().title }}</h1>
+  <p class="page-subtitle">{{ s().sub }}</p>
+
+  <div class="lookup-panel">
+    <div class="search-row">
+      <div class="query-box" [class.empty]="!query()">
+        {{ query() || s().placeholder }}
+      </div>
+      <button class="kb-btn util" (click)="refresh()" [disabled]="boards.loading()">{{ s().refresh }}</button>
+    </div>
+
+    <div class="keyboard" aria-label="on-screen keyboard">
+      @for (row of keyRows; track row) {
+        <div class="kb-row">
+          @for (ch of row.split(''); track ch) {
+            <button class="kb-btn" (click)="press(ch)">{{ ch }}</button>
+          }
+        </div>
+      }
+      <div class="kb-row">
+        <button class="kb-btn wide" (click)="press(' ')">{{ s().space }}</button>
+        <button class="kb-btn wide" (click)="backspace()">⌫</button>
+        <button class="kb-btn wide" (click)="clear()">{{ s().clear }}</button>
+      </div>
+    </div>
+
+    <div class="results">
+      @if (boards.loading() && !boards.lobby()) {
+        <p class="status">{{ s().loading }}</p>
+      } @else if (boards.error() && !boards.lobby()) {
+        <p class="status error">⚠️ {{ s().error }}</p>
+      } @else if (query().trim().length < 2) {
+        <p class="status">{{ s().hint }}</p>
+      } @else if (results().length === 0) {
+        <p class="status">{{ s().none }} “{{ query() }}”.</p>
+      } @else {
+        <p class="count">{{ results().length }} {{ s().matches }}</p>
+        @for (h of results(); track h.case + h.name) {
+          <div class="result-row">
+            <div class="who">
+              <div class="name">{{ h.name }}</div>
+              <div class="case">{{ h.case }}</div>
+            </div>
+            <div class="where">
+              <div class="dept">{{ s().dept }} {{ +h.courtroom }}</div>
+              <div class="floor">{{ floorLabel(h) }} · {{ h.time }}</div>
+            </div>
+            @if (deptNumber(h); as n) {
+              <a class="way-btn" routerLink="/map" [queryParams]="{ dept: n }">{{ s().showway }}</a>
+            }
+          </div>
+        }
+      }
+      @if (boards.lobby() && updatedAt()) {
+        <p class="updated">{{ s().updated }}: {{ updatedAt() }}</p>
+      }
+      <p class="today-note">{{ s().todayonly }}</p>
+    </div>
+  </div>
+</main>
+
+<a routerLink="/services" class="back-btn">{{ s().back }}</a>
