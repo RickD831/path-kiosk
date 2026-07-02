@@ -1,0 +1,53 @@
+<main class="page-body cal-page">
+  <div class="cal-header">
+    <div class="cal-header-left">
+      <h1 class="page-title">{{ s().heading }} {{ deptNum() }}</h1>
+      <p>{{ dateLine() }}</p>
+    </div>
+    <div class="cal-legend">
+      @for (item of s().legend; track item.key) {
+        <span><span class="legend-dot" [style.background]="item.color"></span>{{ s().types[item.key] }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="cal-table-wrap">
+    <table class="cal-table">
+      <thead>
+        <tr>
+          <th>{{ s().h_time }}</th>
+          <th>{{ s().h_case }}</th>
+          <th>{{ s().h_parties }}</th>
+          <th>{{ s().h_type }}</th>
+          <th>{{ s().h_atty }}</th>
+          <th>{{ s().h_status }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of rows(); track $index) {
+          @if (row.kind === 'section') {
+            <tr class="section-divider"><td colspan="6">{{ s().sections[row.sec] }}</td></tr>
+          } @else {
+            <tr>
+              <td class="time">{{ row.time }}</td>
+              <td><span class="case-num">{{ row.caseNum }}</span></td>
+              <td>
+                <div class="party-name">{{ row.plaintiff }}</div>
+                <div class="vs-line">{{ s().vs }}</div>
+                <div class="party-name">{{ row.defendant }}</div>
+              </td>
+              <td><span class="hearing-type {{ row.typeCls }}">{{ s().types[row.typeKey] }}</span></td>
+              <td class="atty">{{ row.atty1 }}<br /><span class="atty2">{{ row.atty2 }}</span></td>
+              <td><span class="status-pill {{ row.statusCls }}">{{ s().statuses[row.statusKey] }}</span></td>
+            </tr>
+          }
+        }
+        @if (!hasHearings()) {
+          <tr><td colspan="6" class="no-hearings">{{ s().none }}</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<a routerLink="/calendars" class="back-btn">{{ s().back }}</a>

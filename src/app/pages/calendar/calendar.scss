@@ -1,0 +1,232 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cal-page {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 32px 32px 80px;
+}
+
+.cal-header {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cal-header-left h1 {
+  margin: 0 0 4px;
+  text-align: left;
+}
+
+.cal-header-left p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.cal-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.cal-table-wrap {
+  width: 100%;
+  max-width: 960px;
+  overflow-x: auto;
+}
+
+.cal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(33, 76, 118, 0.08);
+
+  thead th {
+    background: var(--court-navy);
+    color: #fff;
+    padding: 12px 14px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: #f8f9fb;
+  }
+
+  tbody td {
+    padding: 11px 14px;
+    vertical-align: top;
+  }
+
+  td.time {
+    font-weight: 700;
+    color: var(--court-navy);
+    white-space: nowrap;
+    width: 80px;
+  }
+
+  td.atty {
+    font-size: 13px;
+  }
+}
+
+.case-num {
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.party-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.vs-line {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.atty2 {
+  color: var(--muted);
+}
+
+.hearing-type {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.type-trial   { background: #ffecd1; color: #a04000; }
+.type-motion  { background: #d1e9ff; color: #0055a4; }
+.type-arraign { background: #e6f9ee; color: #1a6b3a; }
+.type-sentenc { background: #f3e6ff; color: #5a1a8c; }
+.type-status  { background: #fff3cd; color: #7a5800; }
+.type-prelim  { background: #fde8e8; color: #8c1a1a; }
+
+.status-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.status-scheduled { background: #e6f9ee; color: #1a6b3a; }
+.status-continued { background: #fff3cd; color: #7a5800; }
+.status-vacated   { background: #fde8e8; color: #8c1a1a; text-decoration: line-through; }
+
+.section-divider td {
+  background: var(--court-navy-deep) !important;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+}
+
+.no-hearings {
+  text-align: center;
+  color: var(--muted);
+  padding: 48px 0;
+  font-size: 15px;
+}
+
+/* ── Large text mode ── */
+:host-context(body.a11y-large) {
+  .cal-table {
+    font-size: 18px;
+  }
+
+  .cal-header-left p {
+    font-size: 19px;
+  }
+
+  .cal-legend {
+    font-size: 16px;
+  }
+
+  .case-num {
+    font-size: 15px;
+  }
+
+  .vs-line {
+    font-size: 15px;
+  }
+
+  .hearing-type,
+  .status-pill {
+    font-size: 14px;
+  }
+
+  .cal-table td.atty {
+    font-size: 17px;
+  }
+
+  .no-hearings {
+    font-size: 19px;
+  }
+}
+
+/* ── High contrast mode ── */
+:host-context(body.a11y-contrast) {
+  .cal-table {
+    border: 2px solid #000;
+    box-shadow: none;
+  }
+
+  .cal-table thead th {
+    background: #000;
+  }
+
+  .section-divider td {
+    background: #000 !important;
+    color: #fff;
+  }
+
+  .type-trial   { background: #fff; color: #7a3000; outline: 1.5px solid #7a3000; }
+  .type-motion  { background: #fff; color: #003f7a; outline: 1.5px solid #003f7a; }
+  .type-arraign { background: #fff; color: #124d29; outline: 1.5px solid #124d29; }
+  .type-sentenc { background: #fff; color: #43136a; outline: 1.5px solid #43136a; }
+  .type-status  { background: #fff; color: #5a4100; outline: 1.5px solid #5a4100; }
+  .type-prelim  { background: #fff; color: #6a1313; outline: 1.5px solid #6a1313; }
+
+  .status-scheduled { background: #fff; color: #124d29; outline: 1.5px solid #124d29; }
+  .status-continued { background: #fff; color: #5a4100; outline: 1.5px solid #5a4100; }
+  .status-vacated   { background: #fff; color: #6a1313; outline: 1.5px solid #6a1313; }
+}

@@ -1,0 +1,88 @@
+<div class="proto-wrap">
+  <div class="proto-head">
+    <h1>{{ t('title') }}</h1>
+    <p>{{ t('intro') }}</p>
+  </div>
+
+  <div class="controls">
+    <input
+      class="form-control map-search"
+      type="text"
+      [placeholder]="t('search')"
+      autocomplete="off"
+      [value]="query()"
+      (input)="query.set(searchValue($event))"
+    />
+    <div class="dest-groups">
+      <div class="dgroup">
+        <span class="glabel">{{ t('depts') }}</span>
+        <div class="nums">
+          @for (d of deptButtons; track d.key) {
+            <button
+              class="num-btn"
+              [class.active]="destKey() === d.key"
+              [class.d-none]="hidden('department departamento ' + d.n)"
+              [title]="'Department ' + d.n + ' — ' + floorName(d.floor)"
+              (click)="selectDest(d.key)"
+            >{{ d.n }}</button>
+          }
+        </div>
+      </div>
+      <div class="dgroup">
+        <span class="glabel">{{ t('services') }}</span>
+        <div class="svc">
+          @for (svc of svcButtons; track svc.key) {
+            <button
+              class="dest-btn"
+              [class.active]="destKey() === svc.key"
+              [class.d-none]="hidden(svc.search)"
+              (click)="selectDest(svc.key, svc.hl)"
+            >{{ t(svc.tkey) }}</button>
+          }
+        </div>
+      </div>
+    </div>
+    <label class="mode-toggle">
+      <span>{{ t('elevator') }}</span>
+      <mat-slide-toggle [checked]="stairsMode()" (change)="stairsMode.set($event.checked)" />
+      <span>{{ t('stairs') }}</span>
+    </label>
+    <button class="dest-btn reset-btn" (click)="resetKiosk()">↺ {{ t('reset') }}</button>
+  </div>
+
+  <div class="stage">
+    <div class="map-card">
+      <h2>🏢 {{ t('building') }} <span class="tag">{{ t('fullroute') }}</span></h2>
+      <div class="canvas-holder">
+        <svg #ovSvg viewBox="0 0 480 620" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+    </div>
+
+    <div class="detail-wrap">
+      <div class="map-card">
+        <h2>🏛️ {{ floorName(selectedFloor()) }} <span class="tag">{{ t('switchhint') }}</span></h2>
+        <div class="canvas-holder">
+          <svg #detSvg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </div>
+      <div class="map-card directions">
+        @if (route(); as r) {
+          <p class="dir-dest">→ {{ tr(r.dest.label) }} ({{ floorName(r.dest.floor) }})</p>
+          <ol>
+            @for (step of steps(); track $index) {
+              <li
+                [class.arrive]="step.type === 'arrive'"
+                [class.trans]="step.type === 'trans'"
+                [class.note]="step.type === 'note'"
+              >{{ formatStep(step) }}</li>
+            }
+          </ol>
+        } @else {
+          <p class="dir-dest">{{ t('pickdest') }}</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<a routerLink="/" class="back-btn">{{ t('back') }}</a>

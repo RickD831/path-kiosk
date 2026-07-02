@@ -1,0 +1,407 @@
+/* Map page styles.
+   ViewEncapsulation.None (SVG content is built imperatively, so scoped
+   selectors would not reach it) — every selector is namespaced under
+   app-map / map-specific class names to avoid leaking. */
+
+app-map {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+app-map .proto-wrap {
+  padding: 16px 24px 90px;
+}
+
+app-map .proto-head h1 {
+  color: var(--court-navy);
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+
+app-map .proto-head p {
+  color: var(--muted);
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+
+/* ── Controls ── */
+app-map .controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+app-map .map-search {
+  flex: 0 0 260px;
+  width: 260px;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1.5px solid #cdd6e0;
+  border-radius: 10px;
+}
+
+app-map .map-search:focus {
+  border-color: var(--court-navy);
+  box-shadow: none;
+}
+
+app-map .dest-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex: 1;
+  align-items: center;
+}
+
+app-map .dgroup {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+app-map .glabel {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+app-map .nums,
+app-map .svc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+app-map .num-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1.5px solid #cdd6e0;
+  color: var(--court-navy);
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+app-map .num-btn:hover {
+  border-color: var(--court-navy);
+}
+
+app-map .num-btn.active {
+  background: var(--court-navy);
+  color: #fff;
+  border-color: var(--court-navy);
+}
+
+app-map .dest-btn {
+  background: #fff;
+  border: 1.5px solid #cdd6e0;
+  color: var(--court-navy);
+  border-radius: 8px;
+  padding: 8px 13px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+app-map .dest-btn:hover {
+  border-color: var(--court-navy);
+}
+
+app-map .dest-btn.active {
+  background: var(--court-navy);
+  color: #fff;
+  border-color: var(--court-navy);
+}
+
+app-map .reset-btn {
+  border-color: var(--court-gold);
+  font-weight: 700;
+}
+
+app-map .mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--court-navy);
+  margin-bottom: 0;
+}
+
+/* ── Stage: overview | detail ── */
+app-map .stage {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  app-map .stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+app-map .map-card {
+  background: #fff;
+  border: 1px solid #e2e7ee;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(11, 37, 62, 0.06);
+}
+
+app-map .map-card h2 {
+  margin: 0;
+  padding: 11px 16px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--court-navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+app-map .map-card h2 .tag {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.85;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 9px;
+  border-radius: 20px;
+}
+
+app-map .canvas-holder {
+  background: linear-gradient(#1a2f45, #24405c);
+}
+
+app-map .canvas-holder svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+app-map .detail-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Directions ── */
+app-map .directions {
+  padding: 14px 18px 16px;
+}
+
+app-map .directions .dir-dest {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--court-navy);
+  margin: 0 0 12px;
+}
+
+app-map .directions ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+app-map .directions li {
+  position: relative;
+  padding: 8px 0 8px 40px;
+  font-size: 14px;
+  color: #2b3a4a;
+  counter-increment: step;
+  min-height: 26px;
+  line-height: 1.4;
+}
+
+app-map .directions li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--court-navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+app-map .directions li.arrive::before {
+  content: '★';
+  background: var(--court-gold);
+  color: #000;
+}
+
+app-map .directions li.trans::before {
+  content: '⬍';
+  background: var(--court-blue-info);
+}
+
+app-map .directions li.note {
+  color: #2a6a2a;
+  font-style: italic;
+}
+
+app-map .directions li.note::before {
+  content: 'ℹ';
+  background: #2a8a2a;
+}
+
+/* ── SVG route/animation classes (elements created at runtime) ── */
+app-map .route-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+app-map .route-dash {
+  stroke-dasharray: 10 12;
+  animation: map-march 1s linear infinite;
+}
+
+@keyframes map-march {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+app-map .pulse {
+  animation: map-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes map-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+app-map .ov-floor {
+  cursor: pointer;
+}
+
+/* ── Large text mode ── */
+body.a11y-large app-map {
+  .proto-head h1 {
+    font-size: 32px;
+  }
+
+  .proto-head p {
+    font-size: 19px;
+  }
+
+  .map-search {
+    font-size: 19px;
+    flex-basis: 320px;
+    width: 320px;
+  }
+
+  .glabel {
+    font-size: 15px;
+  }
+
+  .num-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 21px;
+  }
+
+  .dest-btn {
+    font-size: 17px;
+    padding: 11px 16px;
+  }
+
+  .mode-toggle {
+    font-size: 17px;
+  }
+
+  .map-card h2 {
+    font-size: 17px;
+  }
+
+  .map-card h2 .tag {
+    font-size: 13px;
+  }
+
+  .directions .dir-dest {
+    font-size: 21px;
+  }
+
+  .directions li {
+    font-size: 18px;
+    padding: 10px 0 10px 48px;
+  }
+
+  .directions li::before {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+}
+
+/* ── High contrast mode ── */
+body.a11y-contrast app-map {
+  .map-search,
+  .num-btn,
+  .dest-btn {
+    border-color: #000;
+    border-width: 2px;
+  }
+
+  .num-btn.active,
+  .dest-btn.active {
+    background: #000;
+    border-color: #000;
+  }
+
+  .map-card {
+    border: 2px solid #000;
+  }
+
+  .map-card h2 {
+    background: #000;
+  }
+
+  .directions li {
+    color: #000;
+  }
+
+  .directions li::before {
+    background: #000;
+  }
+
+  .directions li.note {
+    color: #124d29;
+  }
+
+  /* punch up the isometric canvases against glare */
+  .canvas-holder {
+    background: #000;
+  }
+
+  .canvas-holder svg {
+    filter: contrast(1.25) saturate(1.15);
+  }
+}
