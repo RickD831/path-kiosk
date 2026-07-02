@@ -20,9 +20,9 @@ const STRINGS: Dict<HomeStrings> = {
     welcome: 'Welcome',
     sub: 'Touch a tile below to get started.',
     svc: 'Court Services',
-    svc_d: 'Order transcripts, look up cases,<br>Jury Duty information &amp; more.',
-    cal: 'Court Calendars',
-    cal_d: "View today's hearing schedule<br>by department.",
+    svc_d: 'Order transcripts, court payments,<br>Jury Duty information &amp; more.',
+    cal: 'Case Lookup',
+    cal_d: 'Find out where and when your case<br>is being heard today.',
     map: 'Find Your Way',
     map_d: 'Interactive building map &amp;<br>floor-by-floor directory.',
     web: 'Court Website',
@@ -32,9 +32,9 @@ const STRINGS: Dict<HomeStrings> = {
     welcome: 'Bienvenido',
     sub: 'Toque una opción para comenzar.',
     svc: 'Servicios de la Corte',
-    svc_d: 'Solicite transcripciones, busque casos,<br>información sobre el jurado y más.',
-    cal: 'Calendarios de la Corte',
-    cal_d: 'Vea el calendario de audiencias de hoy<br>por departamento.',
+    svc_d: 'Solicite transcripciones, pagos de la corte,<br>información sobre el jurado y más.',
+    cal: 'Búsqueda de Casos',
+    cal_d: 'Averigüe dónde y cuándo<br>se atiende su caso hoy.',
     map: 'Encuentre su Camino',
     map_d: 'Mapa interactivo del edificio<br>y directorio por piso.',
     web: 'Sitio Web de la Corte',
@@ -57,8 +57,8 @@ const STRINGS: Dict<HomeStrings> = {
           <div class="tile-desc" [innerHTML]="s().svc_d"></div>
         </a>
 
-        <a routerLink="/calendars" class="kiosk-tile">
-          <div class="tile-icon">📅</div>
+        <a routerLink="/case-lookup" class="kiosk-tile">
+          <div class="tile-icon">🔍</div>
           <div class="tile-label">{{ s().cal }}</div>
           <div class="tile-desc" [innerHTML]="s().cal_d"></div>
         </a>
