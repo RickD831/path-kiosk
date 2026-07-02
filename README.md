@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/path-banner.png" alt="PATH — Public Access Terminal &amp; Help" width="620">
+</p>
+
 # PATH — Public Access Terminal & Help
 
 A public-facing, touchscreen kiosk web application for the Superior Court of California, County of Monterey. Visitors use it for self-service access to court services, department hearing calendars, and an interactive building map with turn-by-turn wayfinding.
