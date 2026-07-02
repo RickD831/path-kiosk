@@ -17,6 +17,16 @@ Built with **Angular 21** (standalone components, signals, zoneless) + **Bootstr
 - **Accessibility modes** — one-tap large text, high contrast, and audio assistance (Web Speech API self-voicing with spoken directions). Modes are per-visitor, never persisted, and reset on idle.
 - **Idle reset** — after ~2 minutes of inactivity (with a "still there?" countdown), the kiosk returns home and clears accessibility modes for the next visitor.
 
+## Screenshots
+
+**Welcome screen** — four large touch tiles, with the language toggle and accessibility toolbar (large text · high contrast · audio) in the navbar:
+
+![Welcome screen](docs/screenshot-home.png)
+
+**Find Your Way** — exploded isometric view of all four floors (left) and the selected floor's detail (right); picking a destination draws the full route across floors with turn-by-turn directions:
+
+![Interactive wayfinding map](docs/screenshot-map.png)
+
 ## Development
 
 ```bash
