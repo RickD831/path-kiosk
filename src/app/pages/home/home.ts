@@ -21,7 +21,7 @@ const STRINGS: Dict<HomeStrings> = {
     sub: 'Touch a tile below to get started.',
     svc: 'Court Services',
     svc_d: 'Order transcripts, court payments,<br>Jury Duty information &amp; more.',
-    cal: 'Case Lookup',
+    cal: 'Courtroom Finder',
     cal_d: 'Find out where and when your case<br>is being heard today.',
     map: 'Find Your Way',
     map_d: 'Interactive building map &amp;<br>floor-by-floor directory.',
@@ -33,7 +33,7 @@ const STRINGS: Dict<HomeStrings> = {
     sub: 'Toque una opción para comenzar.',
     svc: 'Servicios de la Corte',
     svc_d: 'Solicite transcripciones, pagos de la corte,<br>información sobre el jurado y más.',
-    cal: 'Búsqueda de Casos',
+    cal: 'Buscador de Salas',
     cal_d: 'Averigüe dónde y cuándo<br>se atiende su caso hoy.',
     map: 'Encuentre su Camino',
     map_d: 'Mapa interactivo del edificio<br>y directorio por piso.',
@@ -57,7 +57,7 @@ const STRINGS: Dict<HomeStrings> = {
           <div class="tile-desc" [innerHTML]="s().svc_d"></div>
         </a>
 
-        <a routerLink="/case-lookup" class="kiosk-tile">
+        <a routerLink="/courtroom-finder" class="kiosk-tile">
           <div class="tile-icon">🔍</div>
           <div class="tile-label">{{ s().cal }}</div>
           <div class="tile-desc" [innerHTML]="s().cal_d"></div>

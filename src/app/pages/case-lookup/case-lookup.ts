@@ -34,7 +34,7 @@ interface LookupStrings {
 
 const STRINGS: Dict<LookupStrings> = {
   en: {
-    title: 'Case Lookup',
+    title: 'Courtroom Finder',
     sub: "Find out where and when your case is being heard today.",
     placeholder: 'Case number or last name…',
     hint: 'Type at least 2 characters using the keyboard below.',
@@ -55,7 +55,7 @@ const STRINGS: Dict<LookupStrings> = {
     back: '← Back to Court Services',
   },
   es: {
-    title: 'Búsqueda de Casos',
+    title: 'Buscador de Salas',
     sub: 'Averigüe dónde y cuándo se atiende su caso hoy.',
     placeholder: 'Número de caso o apellido…',
     hint: 'Escriba al menos 2 caracteres con el teclado de abajo.',
@@ -117,6 +117,11 @@ export class CaseLookup {
 
   protected press(ch: string): void {
     if (this.query().length < 40) this.query.update((q) => q + ch);
+  }
+
+  /** Physical keyboard input (kiosks with attached keyboards, dev machines). */
+  protected onType(ev: Event): void {
+    this.query.set((ev.target as HTMLInputElement).value);
   }
 
   protected backspace(): void {

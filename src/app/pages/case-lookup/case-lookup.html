@@ -4,9 +4,17 @@
 
   <div class="lookup-panel">
     <div class="search-row">
-      <div class="query-box" [class.empty]="!query()">
-        {{ query() || s().placeholder }}
-      </div>
+      <input
+        class="query-box"
+        type="text"
+        [value]="query()"
+        (input)="onType($event)"
+        [placeholder]="s().placeholder"
+        maxlength="40"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+      />
       <button class="kb-btn util" (click)="refresh()" [disabled]="boards.loading()">{{ s().refresh }}</button>
     </div>
 

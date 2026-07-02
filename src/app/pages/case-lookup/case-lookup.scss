@@ -35,13 +35,20 @@
   color: var(--court-navy);
   min-height: 58px;
   font-family: SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  text-transform: uppercase;
+  outline: none;
 }
 
-.query-box.empty {
+.query-box:focus {
+  border-color: var(--court-blue-info);
+}
+
+.query-box::placeholder {
   color: var(--muted);
   font-weight: 400;
   font-family: var(--font-base);
   letter-spacing: 0;
+  text-transform: none;
 }
 
 /* ── On-screen keyboard ── */

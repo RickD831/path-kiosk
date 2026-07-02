@@ -11,7 +11,7 @@ Built with **Angular 21** (standalone components, signals, zoneless) + **Bootstr
 ## Features
 
 - **Fully bilingual (English / Spanish)** — one-tap EN/ES toggle in the navbar; every page, including SVG map labels and spoken audio, re-renders live. *(Spanish strings are drafts pending official court review.)*
-- **Case Lookup (live)** — visitors type a case number or last name on an on-screen keyboard and see where and when their case is being heard *today*, straight from the court's calendar-boards API; each result offers "Show me the way," which opens the map with the route already drawn.
+- **Courtroom Finder (live)** — visitors type a case number or last name on an on-screen keyboard and see where and when their case is being heard *today*, straight from the court's calendar-boards API; each result offers "Show me the way," which opens the map with the route already drawn.
 - **Interactive wayfinding** — an exploded isometric view of all four floors plus a per-floor detail view, with Dijkstra routing over a node graph, cross-floor routes via elevator or stairs, and turn-by-turn directions.
 - **Court calendars** — per-department hearing schedules (currently seeded sample data; wire `CalendarBoardsService.courtroomBoard()` into `pages/calendar/calendar.ts` for live data).
 - **Kiosk-safe services** — transactional services (payments, transcript orders) never open on the kiosk; they show an info page with an offline-generated QR code and a plain-text URL so visitors finish on their own phone.
@@ -22,11 +22,11 @@ Built with **Angular 21** (standalone components, signals, zoneless) + **Bootstr
 
 **Welcome screen** — four large touch tiles, with the language toggle and accessibility toolbar (large text · high contrast · audio) in the navbar:
 
-![Welcome screen](docs/screenshot-welcome.png)
+![Welcome screen](docs/screenshot-welcome-tiles.png)
 
-**Case Lookup** — on-screen keyboard (kiosks have no physical one), live search of today's hearings by case number or last name, and a "Show me the way" hand-off into the map:
+**Courtroom Finder** — on-screen keyboard (kiosks have no physical one), live search of today's hearings by case number or last name, and a "Show me the way" hand-off into the map:
 
-![Case lookup](docs/screenshot-case-lookup.png)
+![Courtroom finder](docs/screenshot-courtroom-finder.png)
 
 **Find Your Way** — exploded isometric view of all four floors (left) and the selected floor's detail (right); picking a destination draws the full route across floors with turn-by-turn directions:
 
@@ -40,11 +40,11 @@ cp proxy.conf.sample.json proxy.conf.json   # set the internal calendar API host
 npm start        # ng serve on port 4300, binds 0.0.0.0
 ```
 
-Routes: `/` · `/services` · `/service/:id` · `/case-lookup` · `/calendars` · `/calendar/:dept` · `/map`
+Routes: `/` · `/services` · `/service/:id` · `/courtroom-finder` · `/calendars` · `/calendar/:dept` · `/map`
 
-### Calendar boards API (Case Lookup)
+### Calendar boards API (Courtroom Finder)
 
-The Case Lookup page reads today's hearings from the court's internal calendar-boards API through
+The Courtroom Finder page reads today's hearings from the court's internal calendar-boards API through
 relative `/api/calendar/board/...` paths. In development the dev-server proxy (`proxy.conf.json`)
 forwards those to the internal API host; in production the web server must reverse-proxy the same
 paths — scoped to the **read-only board endpoints only**. The internal hostname is intentionally
@@ -71,7 +71,7 @@ src/app/
     ├── home/           # 4 kiosk tiles
     ├── services/       # service cards (external, in-app, QR info page, or coming soon)
     ├── service-info/   # QR + URL page for use-your-phone services
-    ├── case-lookup/    # today's hearings search (calendar boards API + on-screen keyboard)
+    ├── case-lookup/    # Courtroom Finder: today's hearings search (calendar boards API + on-screen keyboard)
     ├── calendars/      # department picker
     ├── calendar/       # per-department schedule (seeded sample data)
     └── map/            # wayfinding: wayfinding.ts (graph + Dijkstra), map.ts (isometric SVG)

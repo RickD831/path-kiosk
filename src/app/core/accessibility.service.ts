@@ -32,7 +32,7 @@ const PAGES: Dict<Record<string, string>> = {
     calendar: 'Department {n} calendar.',
     map: 'Find Your Way. Search or tap a destination to see directions.',
     service: 'To use this service, scan the QR code with your own phone. It is not available on this kiosk.',
-    'case-lookup': "Case Lookup. Type a case number or last name to find where your case is being heard today.",
+    'courtroom-finder': 'Courtroom Finder. Type a case number or last name to find where your case is being heard today.',
   },
   es: {
     '': 'Bienvenido. Toque una opción para comenzar.',
@@ -41,7 +41,7 @@ const PAGES: Dict<Record<string, string>> = {
     calendar: 'Calendario del Departamento {n}.',
     map: 'Encuentre su Camino. Busque o toque un destino para ver las indicaciones.',
     service: 'Para usar este servicio, escanee el código QR con su propio teléfono. No está disponible en este quiosco.',
-    'case-lookup': 'Búsqueda de Casos. Escriba un número de caso o apellido para saber dónde se atiende su caso hoy.',
+    'courtroom-finder': 'Buscador de Salas. Escriba un número de caso o apellido para saber dónde se atiende su caso hoy.',
   },
 };
 

@@ -69,7 +69,8 @@ app-root {
 }
 
 .court-navbar .brand-name img {
-  height: 115px;
+  /* asset is cropped to the artwork, so this is the true visual height */
+  height: 82px;
   width: auto;
 }
 
